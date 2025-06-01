@@ -10,7 +10,7 @@ from ramailo.views.kyc import set_email, verify_email
 from ramailo.views.notification import set_fcm_device
 from ramailo.views.onboarding import LoginView, OtpView, logout
 from ramailo.views.user import ProfileView
-
+from ramailo.views.post import PostListCreateAPIView,PostDetailAPIView,PostCommentsAPIView
 from .openapi_info import openapi_info
 
 
@@ -59,6 +59,11 @@ api_paths = [
 
     # fcm device
     path('fcm/register/', set_fcm_device, name='register_fcm_device'),
+
+    #Post Functionality
+    path('posts/', PostListCreateAPIView.as_view(), name='post-list-create'),
+    path('posts/<uuid:post_id>/', PostDetailAPIView.as_view(), name='post-detail'), 
+    path('posts/<uuid:post_id>/comments/', PostCommentsAPIView.as_view(), name='post-comments'), 
 
 ]
 
